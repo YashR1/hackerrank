@@ -1,0 +1,40 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+
+#define LL long long int
+#define sd(x) scanf("%d", &x);
+#define slld(x) scanf("%lld", &x);
+
+set<LL> st;
+
+int main() {
+    int t, n;
+    LL m, ans, j, k, s;
+    sd(t);
+    while(t--){
+        sd(n);
+        st.clear();
+        slld(m);
+        st.insert(m);
+        ans = 0;
+        s = 0;
+        while(n--){
+            slld(j);
+            j %= m;
+            s += j;
+            if(s >= m){
+                s -= m;
+            }
+            k = *(st.upper_bound(s));
+            ans = max(ans, s);
+            ans = max(ans, s + m - k);
+            st.insert(s);
+        }
+        printf("%lld\n", ans);
+    }
+    return 0;
+}
